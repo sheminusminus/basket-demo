@@ -72,7 +72,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({ // also generate an index.html
       filename: 'index.html',
-      template: 'client/assets/html/index.ejs',
+      template: 'client/assets/html/index.html',
     }),
   ],
   devtool: 'source-map',
