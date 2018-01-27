@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "airbnb-base",
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "jest": true,
+    "mocha": true,
+    "browser": true
+  },
+  "plugins": ["babel", "import", "chai-friendly", "json", "react"],
+  "rules": {
+    "no-unused-vars": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": [2, { "exceptMethods": [ "render", "componentWillMount", "componentDidMount", "componentWillUnmount", "componentDidCatch" ] }],
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-constant-condition": "off",
+    "import/no-extraneous-dependencies": "off"
+  }
+}
+

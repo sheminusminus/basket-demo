@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "modules": "./client/modules"
+      }
+    }],
+    "transform-object-rest-spread"
+  ]
+}
+
