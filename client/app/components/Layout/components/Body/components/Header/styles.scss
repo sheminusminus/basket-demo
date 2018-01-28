@@ -1,0 +1,42 @@
+$headerSize: 65px;
+$headerBg: rgba(24, 27, 37, 1);
+$accent: #EE6462;
+$navSize: 80px;
+$buttonSize: 50px;
+$headerWidth: calc(100% - 80px);
+
+.headerWrapper {
+  height: $headerSize;
+  width: 100%;
+  position: relative;
+  background: $headerBg;
+  pointer-events: none;
+
+  .header {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    width: $headerWidth;
+    max-width: $headerWidth;
+
+    .buttonWrapper {
+      height: $headerSize;
+      width: $headerSize;
+      padding: 7px;
+    }
+
+    .add, .add:hover, .add:focus {
+      color: $accent;
+      background: transparent;
+      outline: none;
+      border: 0;
+      font-size: 36px;
+      font-weight: 500;
+      height: $buttonSize;
+      width: $buttonSize;
+      margin: 0 auto;
+      pointer-events: all;
+      cursor: pointer;
+    }
+  }
+}

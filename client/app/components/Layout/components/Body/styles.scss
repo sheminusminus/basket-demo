@@ -1,0 +1,10 @@
+$bodyBg: rgba(232, 232, 237, 1);
+
+.body {
+  width: calc(100% - 80px);
+  background: $bodyBg;
+
+  .content {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,59 @@
+$underlayBg: rgba(42, 47, 58, 0.8);
+$contentBg: white;
+$animTiming: 0.2s;
+
+@mixin fullScreen() {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.underlay {
+  @include fullScreen();
+  background: $underlayBg;
+  cursor: pointer;
+  animation: fadeIn $animTiming;
+}
+
+.contentWrapper {
+  @include fullScreen();
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+
+  .content {
+    animation: open $animTiming;
+    pointer-events: all;
+    width: 90%;
+    height: auto;
+    min-height: 200px;
+    background-color: $contentBg;
+    border-radius: 2px;
+    margin: 0 auto;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-shadow: rgba(0, 0, 0, 0.21) 0px 14px 45px, rgba(0, 0, 0, 0.18) 0px 10px 18px;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes open {
+  0% { -webkit-transform: translate(0px, -64px); opacity: 0; }
+  100% { -webkit-transform: translate(0px, 0px); opacity: 1; }
+}
+
+@keyframes open {
+  0% { transform: translate(0px, -64px); opacity: 0; }
+  100% { transform: translate(0px, 0px); opacity: 1; }
+}
