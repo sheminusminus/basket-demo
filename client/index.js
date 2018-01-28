@@ -4,11 +4,11 @@ import { render } from 'react-dom';
 
 import App from './app';
 
-const Main = () => (
+const Root = () => (
   <App />
 );
 
 render(
-  <Main />,
+  <Root />,
   document.querySelector('#app-root'),
 );

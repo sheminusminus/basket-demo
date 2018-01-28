@@ -1,29 +1,52 @@
 import 'babel-polyfill';
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { render } from 'react-dom';
-import firebase from 'firebase';
 
-import { Routes } from '../routes/components';
+import { db } from './db';
 
-import config from '../config';
+import { NavLinks } from './constants';
 
-import { Layout } from '../root/components';
+import { Basket, Meals, ShoppingLists } from './views';
+import { Layout, ItemEntry } from './components';
+import { withFirebaseDb } from './wrappers';
+
+const BasketWithDb = withFirebaseDb(Basket, db);
+const MealsWithDb = withFirebaseDb(Meals, db);
+const ShoppingListsWithDb = withFirebaseDb(ShoppingLists, db);
+const ItemEntryWithDb = withFirebaseDb(ItemEntry, db);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    firebase.initializeApp(config.db);
-    this.db = firebase.database();
+    this.state = {
+      showItemAdd: false,
+    };
+    this.toggleItemEntry = this.toggleItemEntry.bind(this);
+    this.handleAddItem = this.handleAddItem.bind(this);
+  }
+
+  toggleItemEntry() {
+    this.setState({ showItemAdd: !this.state.showItemAdd });
+  }
+
+  handleAddItem(evt) {
+    evt.stopPropagation();
+    console.log(this.props);
   }
 
   render() {
+    const { showItemAdd } = this.state;
+
     return (
-      <Router>
-        <Layout>
-          <Routes db={this.db} />
-        </Layout>
-      </Router>
+      <Layout toggleItemEntry={this.toggleItemEntry}>
+        <ShoppingListsWithDb anchor={NavLinks.LISTS} />
+        <BasketWithDb anchor={NavLinks.BASKET} />
+        <MealsWithDb anchor={NavLinks.MEALS} />
+        {
+          showItemAdd &&
+          <ItemEntryWithDb
+            toggleItemEntry={this.toggleItemEntry} />
+        }
+      </Layout>
     );
   }
 }

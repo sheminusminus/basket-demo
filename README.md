@@ -1,4 +1,4 @@
-# _basket_
+# basket
 
 transform your grocery shopping experience with such easy lists!
 

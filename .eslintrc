@@ -23,7 +23,8 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-constant-condition": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "object-curly-newline": "off"
   }
 }
 
