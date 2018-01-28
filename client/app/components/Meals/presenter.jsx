@@ -1,7 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
 
-import { ItemGroup } from '../../components';
+import { ItemGroup } from './components';
 
 import styles from './styles.scss';
 
