@@ -5,8 +5,7 @@ import { db } from './db';
 
 import { NavLinks } from './constants';
 
-import { Basket, Meals, ShoppingLists } from './views';
-import { Layout, ItemEntry } from './components';
+import { Basket, Meals, ShoppingLists, Layout, ItemEntry } from './components';
 import { withFirebaseDb } from './wrappers';
 
 const BasketWithDb = withFirebaseDb(Basket, db);
