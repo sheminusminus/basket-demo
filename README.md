@@ -1,6 +1,6 @@
 # basket
 
-[online demo](https://public-uavomxxxqi.now.sh)
+[online demo](https://basket.now.sh/)
 
 transform your grocery shopping experience, with such easy lists!
 
