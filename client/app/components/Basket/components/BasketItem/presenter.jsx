@@ -13,8 +13,8 @@ class BasketItem extends React.PureComponent {
 
     return (
       <li className={styles.item}>
-        <span>{item.quantity}</span>
-        <span>{item.name}</span>
+        <input value={item.quantity} type="number" />
+        <input value={item.name} type="text" />
         <span>
           <button onClick={this.handleRemoveItem.bind(this)} className={styles.remove}>
             x
