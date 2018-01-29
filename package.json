@@ -9,7 +9,8 @@
     "lint": "./node_modules/.bin/eslint",
     "test": "npm run test:unit && npm run test:ui",
     "test:unit": "mocha --recursive --compilers js:babel-core/register --require babel-polyfill test/client/unit/**/*.js",
-    "test:ui": "jest"
+    "test:ui": "jest",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/sheminusminus/basket-demo#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "express": "^4.16.2",
     "firebase": "^4.9.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
