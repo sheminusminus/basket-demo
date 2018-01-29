@@ -45,14 +45,11 @@ class ShoppingLists extends React.Component {
   }
 
   handleValues(values) {
-    if (!values) return;
-
     const items = getItemsHashMapFromSnapshotVals(values);
     this.setState({ items }, () => console.log(this.state.items));
   }
 
   handleSelectItem(itemId) {
-    console.log(itemId);
     const selections = [...this.state.selections];
     const index = selections.indexOf(itemId);
 
