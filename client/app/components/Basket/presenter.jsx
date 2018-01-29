@@ -5,6 +5,8 @@ import {
   getHashMapFromSnapshotValsForIds,
 } from '../../utils';
 
+import { BasketItem } from './components';
+
 import styles from './styles.scss';
 
 class Basket extends React.Component {
@@ -40,7 +42,7 @@ class Basket extends React.Component {
       <div className={styles.basket} id={anchor}>
         Basket
         <ul>
-          {items.map(item => <li key={`basket-${item.id}`}>{item.name}</li>)}
+          {items.map(item => <BasketItem key={`basket-${item.id}`} item={item} />)}
         </ul>
       </div>
     );
