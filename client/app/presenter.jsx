@@ -37,8 +37,8 @@ class App extends React.Component {
 
     return (
       <Layout toggleItemEntry={this.toggleItemEntry}>
-        <ShoppingListsWithDb anchor={NavLinks.LISTS} />
         <BasketWithDb anchor={NavLinks.BASKET} />
+        <ShoppingListsWithDb anchor={NavLinks.LISTS} />
         <MealsWithDb anchor={NavLinks.MEALS} />
         {
           showItemAdd &&

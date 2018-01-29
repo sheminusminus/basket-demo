@@ -35,15 +35,15 @@ class Nav extends React.PureComponent {
             isActive={activeHash.includes(NavLinks.HOME)}
             onMouseUp={() => this.setState({ activeHash: NavLinks.HOME })} />
           <NavLink
-            text="Lists"
-            href={NavLinks.LISTS}
-            isActive={activeHash.includes(NavLinks.LISTS)}
-            onMouseUp={() => this.setState({ activeHash: NavLinks.LISTS })} />
-          <NavLink
             text="Basket"
             href={NavLinks.BASKET}
             isActive={activeHash.includes(NavLinks.BASKET)}
             onMouseUp={() => this.setState({ activeHash: NavLinks.BASKET })} />
+          <NavLink
+            text="Lists"
+            href={NavLinks.LISTS}
+            isActive={activeHash.includes(NavLinks.LISTS)}
+            onMouseUp={() => this.setState({ activeHash: NavLinks.LISTS })} />
           <NavLink
             text="Meals"
             href={NavLinks.MEALS}

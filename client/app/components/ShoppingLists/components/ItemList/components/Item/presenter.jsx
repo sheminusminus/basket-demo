@@ -1,4 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
 
-export default ({ data }) => <div>Item</div>;
+import styles from './styles.scss';
+
+export default ({ item }) => (
+  <li className={styles.item}>
+    <span>{item.quantity}</span>
+    <span>{item.name}</span>
+  </li>
+);
