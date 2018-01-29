@@ -1,3 +1,22 @@
+$addAllPath: '../../../../../../../assets/images/add_all.svg';
+
 .actions {
   display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url($addAllPath);
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  margin: 20px 30px;
+  opacity: 0.5;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 1.0;
+  }
 }

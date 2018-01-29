@@ -9,9 +9,15 @@ $accent4: #D3334D;
   border: 2px solid $border;
   margin: 10px 0 0 0;
 
+  .groupHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+
   h5 {
     padding: 0 20px;
     display: inline-block;
+    margin: 20px 0;
   }
 
   ul {
