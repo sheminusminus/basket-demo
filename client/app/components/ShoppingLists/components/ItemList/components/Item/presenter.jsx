@@ -30,6 +30,12 @@ class Item extends React.PureComponent {
     handleQuantity(item.id, evt.target.value);
   }
 
+  handleRecurring(evt) {
+    evt.stopPropagation();
+    const { item, handleRecurring } = this.props;
+    handleRecurring(item.id, !item.recurring);
+  }
+
   /* eslint-disable class-methods-use-this */
   handleInputFocus(evt) {
     evt.stopPropagation();
@@ -48,7 +54,7 @@ class Item extends React.PureComponent {
     return (
       <li className={classes} onClick={this.handleSelect.bind(this)}>
         <span className={styles.recur}>
-          <span className={recurBoxClasses} />
+          <span className={recurBoxClasses} onClick={this.handleRecurring.bind(this)} />
         </span>
         <input
           onChange={this.handleQuantity.bind(this)}

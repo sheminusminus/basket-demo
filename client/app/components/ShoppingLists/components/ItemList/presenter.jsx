@@ -14,6 +14,7 @@ const ItemList = (props) => {
     selectedItems,
     handleItemName,
     handleItemQuantity,
+    handleItemRecurring,
   } = props;
 
   return (
@@ -21,6 +22,7 @@ const ItemList = (props) => {
       <ul>
         {items.map(item => (
           <Item
+            handleRecurring={handleItemRecurring}
             handleName={handleItemName}
             handleQuantity={handleItemQuantity}
             isSelected={selectedItems.includes(item.id)}

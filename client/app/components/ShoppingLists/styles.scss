@@ -1,12 +1,35 @@
 $title: rgba(109, 115, 131, 1);
+$legendFill: #6946D2;
 
 .lists {
   min-height: 100vh;
   padding: 30px 0 0 0;
 
+  .listsHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+
   h4 {
     color: $title;
     opacity: 0.8;
     margin: 0 0 0 ;
+  }
+
+  .legend {
+    opacity: 0.8;
+
+    .box {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      background: $legendFill;
+    }
+
+    .text {
+      color: $legendFill;
+      margin-left: 10px;
+      font-size: 14px;
+    }
   }
 }

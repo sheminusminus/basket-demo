@@ -38,6 +38,12 @@ export default function withFirebaseDb(Component, db) {
       }
     }
 
+    static editItemRecurring(itemId, recurring) {
+      db.ref(`items/${itemId}`).update({
+        recurring,
+      });
+    }
+
     static handleRemoveItem(itemId) {
       db.ref('items').update({ [itemId]: null });
     }
@@ -107,6 +113,7 @@ export default function withFirebaseDb(Component, db) {
           db={db}
           editItemQuantity={ComponentWithDb.editItemQuantity}
           editItemName={ComponentWithDb.editItemName}
+          editItemRecurring={ComponentWithDb.editItemRecurring}
           saveMeal={ComponentWithDb.saveMeal}
           listenToItems={ComponentWithDb.listenToItems}
           listenToBasket={ComponentWithDb.listenToBasket}

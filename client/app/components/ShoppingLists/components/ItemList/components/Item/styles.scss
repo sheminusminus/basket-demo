@@ -3,6 +3,7 @@ $recurFill: #6946D2;
 $text: rgba(109, 115, 131, 1);
 $addPath: '../../../../../../../assets/images/add.svg';
 $deletePath: '../../../../../../../assets/images/rm.svg';
+$recurShadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 
 @mixin button($imagePath, $imgSize) {
   width: 20px;
@@ -48,6 +49,11 @@ $deletePath: '../../../../../../../assets/images/rm.svg';
       &.filled {
         background-color: $recurFill;
         opacity: 1.0;
+      }
+
+      &:hover {
+        box-shadow: $recurShadow;
+        background-color: $recurFill;
       }
     }
   }

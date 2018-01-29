@@ -71,6 +71,7 @@ class ShoppingLists extends React.Component {
       handleRemoveItem,
       editItemName,
       editItemQuantity,
+      editItemRecurring,
     } = this.props;
 
     const { items, selections } = this.state;
@@ -80,7 +81,13 @@ class ShoppingLists extends React.Component {
     return (
       <div className={styles.lists} id={anchor}>
         <div>
-          <h4>Shopping List</h4>
+          <div className={styles.listsHeader}>
+            <h4>Shopping List</h4>
+            <span className={styles.legend}>
+              <span className={styles.box} />
+              <span className={styles.text}>Recurring</span>
+            </span>
+          </div>
           {
             selections.length > 0 &&
             <Actions
@@ -89,6 +96,7 @@ class ShoppingLists extends React.Component {
           }
         </div>
         <ItemList
+          handleItemRecurring={editItemRecurring}
           handleItemName={editItemName}
           handleItemQuantity={editItemQuantity}
           selectedItems={selections}

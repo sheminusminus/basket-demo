@@ -38,6 +38,10 @@ class ItemEntry extends React.Component {
     this.setState({ quantity: parseInt(evt.target.value, 10) || '' });
   }
 
+  handleRecurring(evt) {
+    this.setState({ recurring: evt.target.value === 'true' });
+  }
+
   renderItemEntry() {
     const { toggleItemEntry } = this.props;
     const { name, quantity, recurring } = this.state;
@@ -47,17 +51,29 @@ class ItemEntry extends React.Component {
         <div className={styles.underlay} onClick={toggleItemEntry} />
         <div className={styles.contentWrapper}>
           <div className={styles.content}>
+            <h4>Add a Shopping List Item</h4>
+            <label>Name</label>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="e.g. Asparagus"
               value={name}
               onChange={this.handleName} />
+            <label>Quantity</label>
             <input
               type="number"
-              placeholder="Name"
+              placeholder="e.g. 2"
               value={quantity}
               onChange={this.handleQuantity} />
-            <button onClick={this.handleAdd}>Save</button>
+            <label>Recurring item?</label>
+            <select
+              className={styles.select}
+              value={recurring}
+              onChange={this.handleRecurring.bind(this)}>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </select>
+            <button onClick={this.handleAdd} className={styles.save}>Save</button>
+            <button onClick={toggleItemEntry} className={styles.cancel}>Cancel</button>
           </div>
         </div>
       </div>

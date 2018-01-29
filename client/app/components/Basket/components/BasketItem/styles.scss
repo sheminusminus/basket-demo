@@ -9,8 +9,8 @@ $text: rgba(109, 115, 131, 1);
   padding: 20px;
 
   input {
-    max-width: 55%;
-    width: 55%;
+    max-width: 50%;
+    width: 50%;
     outline: none;
     border: 0;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -19,7 +19,7 @@ $text: rgba(109, 115, 131, 1);
     text-overflow: ellipsis;
 
     &:first-child {
-      max-width: 15%
+      max-width: 20%
     }
   }
 
