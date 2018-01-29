@@ -21,10 +21,12 @@ class Item extends React.PureComponent {
   }
 
   render() {
-    const { item } = this.props;
+    const { item, isSelected } = this.props;
+    let classes = styles.item;
+    if (isSelected) classes = `${classes} ${styles.selected}`;
 
     return (
-      <li className={styles.item} onClick={this.handleSelect.bind(this)}>
+      <li className={classes} onClick={this.handleSelect.bind(this)}>
         <span>{item.quantity}</span>
         <span>{item.name}</span>
         <span>

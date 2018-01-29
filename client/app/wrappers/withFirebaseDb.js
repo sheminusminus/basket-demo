@@ -6,6 +6,7 @@ export default function withFirebaseDb(Component, db) {
       const { key } = db.ref('items').push();
 
       db.ref(`items/${key}`).set({
+        id: key,
         name,
         quantity,
         recurring,
@@ -65,11 +66,22 @@ export default function withFirebaseDb(Component, db) {
       ));
     }
 
+    static saveMeal(name, items) {
+      const { key } = db.ref('meals').push();
+
+      db.ref(`meals/${key}`).set({
+        id: key,
+        name,
+        items,
+      });
+    }
+
     render() {
       const { ...props } = this.props;
       return (
         <Component
           db={db}
+          saveMeal={ComponentWithDb.saveMeal}
           listenToItems={ComponentWithDb.listenToItems}
           listenToBasket={ComponentWithDb.listenToBasket}
           listenToMeals={ComponentWithDb.listenToMeals}

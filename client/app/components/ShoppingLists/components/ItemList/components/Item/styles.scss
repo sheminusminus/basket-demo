@@ -2,4 +2,13 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  &.selected {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }
