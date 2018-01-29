@@ -108,6 +108,8 @@ export default function withFirebaseDb(Component, db) {
     }
 
     static saveMeal(name, items) {
+      if (!name || !items) return;
+
       const { key } = db.ref('meals').push();
 
       db.ref(`meals/${key}`).set({

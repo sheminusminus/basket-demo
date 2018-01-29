@@ -1,4 +1,5 @@
 $title: rgba(109, 115, 131, 1);
+$border: rgba(222, 222, 227, 1);
 
 .meals {
   min-height: 100vh;
@@ -8,5 +9,14 @@ $title: rgba(109, 115, 131, 1);
     opacity: 0.8;
     margin: 0 0 20px 0;
     color: $title;
+  }
+
+  .empty {
+    background-color: white;
+    border: 2px solid $border;
+    color: $title;
+    padding: 30px;
+    margin: 10px 0 0 0;
+    text-align: center;
   }
 }

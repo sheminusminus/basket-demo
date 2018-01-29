@@ -30,26 +30,28 @@ class ShoppingLists extends React.Component {
 
   handleSaveAsMeal() {
     const { getItemsOnce, saveMeal } = this.props;
-    const { selections } = this.state;
+    const { selections, mealName } = this.state;
 
-    getItemsOnce((itemValues) => {
-      const items = selections.reduce((hashMap, key) => ({
-        ...hashMap,
-        [key]: itemValues[key],
-      }), {});
+    if (!mealName || !selections.length) return;
 
-      saveMeal(this.state.mealName, items);
+    this.setState({
+      selections: [],
+      mealName: '',
+    }, () => {
+      getItemsOnce((itemValues) => {
+        const items = selections.reduce((hashMap, key) => ({
+          ...hashMap,
+          [key]: itemValues[key],
+        }), {});
 
-      this.setState({
-        selections: [],
-        mealName: '',
+        saveMeal(mealName, items);
       });
     });
   }
 
   handleValues(values) {
     const items = getItemsHashMapFromSnapshotVals(values);
-    this.setState({ items }, () => console.log(this.state.items));
+    this.setState({ items });
   }
 
   handleSelectItem(itemId) {

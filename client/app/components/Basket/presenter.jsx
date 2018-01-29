@@ -28,7 +28,7 @@ class Basket extends React.Component {
 
   handleValues(values) {
     const basketItems = getItemsHashMapFromSnapshotVals(values);
-    this.setState({ basketItems }, () => console.log(this.state.basketItems));
+    this.setState({ basketItems });
   }
 
   handleBasketPurchased() {
