@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   getItemsHashMapFromSnapshotVals,
+  getItemsHashMapFromSnapshotFilteringIds,
   getRecurringItemsFromMap,
   getNonRecurringItemsFromMap,
 } from '../../utils';
@@ -19,20 +20,19 @@ class ShoppingLists extends React.Component {
   }
 
   componentDidMount() {
-    const { listenToItems } = this.props;
-    listenToItems(this.handleValues.bind(this));
+    const { listenToList } = this.props;
+    listenToList(this.handleValues.bind(this));
   }
 
   handleValues(values) {
     if (!values) return;
 
     const items = getItemsHashMapFromSnapshotVals(values);
-
     this.setState({ items }, () => console.log(this.state.items));
   }
 
   render() {
-    const { anchor } = this.props;
+    const { anchor, handleAddItemToBasket, handleRemoveItem } = this.props;
     const { items } = this.state;
 
     const recurringItems = getRecurringItemsFromMap(items);
@@ -42,12 +42,16 @@ class ShoppingLists extends React.Component {
       <div className={styles.lists} id={anchor}>
         Shopping Lists
         <ItemList
+          handleAddItemToBasket={handleAddItemToBasket}
+          handleRemoveItem={handleRemoveItem}
           title="Every Week"
           listKey="recurring"
           items={recurringItems} />
         <ItemList
-          title="Just This Week"
-          listKey="once"
+          handleAddItemToBasket={handleAddItemToBasket}
+          handleRemoveItem={handleRemoveItem}
+          title="Only This Week"
+          listKey="recurring"
           items={onceItems} />
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getMealsWithItemsHashMapFromSnapshotVals } from '../../utils';
+import { getMealsHashMapFromSnapshotVals } from '../../utils';
 
 import { ItemGroup } from './components';
 
@@ -20,11 +20,8 @@ class Meals extends React.Component {
   }
 
   handleValues(values) {
-    const { getItemsOnce } = this.props;
-    getItemsOnce((itemValues) => {
-      const meals = getMealsWithItemsHashMapFromSnapshotVals(values, itemValues);
-      this.setState({ meals }, () => console.log(this.state.meals));
-    });
+    const meals = getMealsHashMapFromSnapshotVals(values);
+    this.setState({ meals }, () => console.log(this.state.meals));
   }
 
   render() {

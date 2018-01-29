@@ -9,32 +9,20 @@ export default function withFirebaseDb(Component, db) {
         name,
         quantity,
         recurring,
+        inBasket: false,
       });
-
-      db.ref(`list/${key}`).set(true);
     }
 
     static handleRemoveItem(itemId) {
       db.ref('items').update({ [itemId]: null });
-      db.ref('list').update({ [itemId]: null });
     }
 
     static handleAddItemToBasket(itemId) {
-      db.ref('basket').update({ [itemId]: true });
-      db.ref('list').update({ [itemId]: null });
+      db.ref(`items/${itemId}`).update({ inBasket: true });
     }
 
     static handleRemoveItemFromBasket(itemId) {
-      db.ref('basket').update({ [itemId]: null });
-      db.ref('list').update({ [itemId]: true });
-    }
-
-    static handleAddItemToList(itemId) {
-      db.ref('list').update({ [itemId]: true });
-    }
-
-    static handleRemoveItemFromList(itemId) {
-      db.ref('list').update({ [itemId]: null });
+      db.ref(`items/${itemId}`).update({ inBasket: false });
     }
 
     static listenToItems(callback) {
@@ -46,11 +34,15 @@ export default function withFirebaseDb(Component, db) {
     }
 
     static listenToBasket(callback) {
-      db.ref('basket').on('value', snapshot => callback(snapshot.val()));
+      db.ref('items').orderByChild('inBasket').equalTo(true).on('value', snapshot => (
+        callback(snapshot.val())
+      ));
     }
 
     static getBasketOnce(callback) {
-      db.ref('basket').once('value', snapshot => callback(snapshot.val()));
+      db.ref('items').orderByChild('inBasket').equalTo(true).once('value', snapshot => (
+        callback(snapshot.val())
+      ));
     }
 
     static listenToMeals(callback) {
@@ -61,6 +53,18 @@ export default function withFirebaseDb(Component, db) {
       db.ref('meals').once('value', snapshot => callback(snapshot.val()));
     }
 
+    static listenToList(callback) {
+      db.ref('items').orderByChild('inBasket').equalTo(false).on('value', snapshot => (
+        callback(snapshot.val())
+      ));
+    }
+
+    static getListOnce(callback) {
+      db.ref('items').orderByChild('inBasket').equalTo(false).once('value', snapshot => (
+        callback(snapshot.val())
+      ));
+    }
+
     render() {
       const { ...props } = this.props;
       return (
@@ -69,15 +73,15 @@ export default function withFirebaseDb(Component, db) {
           listenToItems={ComponentWithDb.listenToItems}
           listenToBasket={ComponentWithDb.listenToBasket}
           listenToMeals={ComponentWithDb.listenToMeals}
+          listenToList={ComponentWithDb.listenToList}
           getItemsOnce={ComponentWithDb.listenToItems}
           getBasketOnce={ComponentWithDb.getBasketOnce}
           getMealsOnce={ComponentWithDb.getMealsOnce}
+          getListOnce={ComponentWithDb.getListOnce}
           handleAddItemToBasket={ComponentWithDb.handleAddItemToBasket}
           handleRemoveItemFromBasket={ComponentWithDb.handleRemoveItemFromBasket}
           handleRemoveItem={ComponentWithDb.handleRemoveItem}
           handleAddItem={ComponentWithDb.handleAddItem}
-          handleAddItemToList={ComponentWithDb.handleAddItemToList}
-          handleRemoveItemFromList={ComponentWithDb.handleRemoveItemFromList}
           { ...props } />
       );
     }

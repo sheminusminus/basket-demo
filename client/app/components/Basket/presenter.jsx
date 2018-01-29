@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   getAllItemsFromMap,
-  getHashMapFromSnapshotValsForIds,
+  getItemsHashMapFromSnapshotVals,
 } from '../../utils';
 
 import { BasketItem } from './components';
@@ -23,14 +23,8 @@ class Basket extends React.Component {
   }
 
   handleValues(values) {
-    const { getItemsOnce } = this.props;
-    if (!values) return;
-
-    const keys = Object.keys(values);
-    getItemsOnce((itemValues) => {
-      const basketItems = getHashMapFromSnapshotValsForIds(keys, itemValues);
-      this.setState({ basketItems }, () => console.log(this.state.basketItems));
-    });
+    const basketItems = getItemsHashMapFromSnapshotVals(values);
+    this.setState({ basketItems }, () => console.log(this.state.basketItems));
   }
 
   render() {

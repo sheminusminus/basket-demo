@@ -14,6 +14,23 @@ export const getItemsHashMapFromSnapshotVals = (values) => {
   }), {});
 };
 
+export const getItemsHashMapFromSnapshotFilteringIds = (filterIds, values) => {
+  if (!values) return {};
+
+  const keys = Object.keys(values);
+  const filtered = keys.filter(key => !filterIds.includes(key));
+
+  return filtered.reduce((hashMap, key) => ({
+    ...hashMap,
+    [key]: {
+      id: key,
+      name: values[key].name,
+      quantity: values[key].quantity,
+      recurring: values[key].recurring,
+    },
+  }), {});
+};
+
 export const getRecurringItemsFromMap = (hm) => {
   const keys = Object.keys(hm);
   const filtered = keys.filter(key => hm[key].recurring);
@@ -37,36 +54,17 @@ export const getAllItemsFromMap = (hm) => {
   }));
 };
 
-export const getHashMapFromSnapshotValsForIds = (itemIds, values) => {
-  if (!values || !itemIds) return {};
+export const getMealsHashMapFromSnapshotVals = (values) => {
+  if (!values) return {};
 
-  return itemIds.reduce((hashMap, key) => ({
-    ...hashMap,
-    [key]: {
-      id: key,
-      name: values[key].name,
-      quantity: values[key].quantity,
-      recurring: values[key].recurring,
-    },
-  }), {});
-};
-
-export const getMealsWithItemsHashMapFromSnapshotVals = (mealValues, itemValues) => {
-  if (!mealValues || !itemValues) return {};
-
-  const mealKeys = Object.keys(mealValues);
+  const mealKeys = Object.keys(values);
 
   return mealKeys.reduce((hashMap, key) => ({
     ...hashMap,
     [key]: {
       id: key,
-      name: mealValues[key].name,
-      items: getAllItemsFromMap(
-        getHashMapFromSnapshotValsForIds(
-          Object.keys(mealValues[key].items),
-          itemValues,
-        ),
-      ),
+      name: values[key].name,
+      items: getAllItemsFromMap(values[key].items),
     },
   }), {});
 };

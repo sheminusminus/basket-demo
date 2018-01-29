@@ -8,7 +8,13 @@ const ItemList = ({ title, items, handleRemoveItem, handleAddItemToBasket, listK
   <div className={styles.itemList}>
     <h4>{title}</h4>
     <ul>
-      {items.map(item => <Item key={`${listKey}-${item.id}`} item={item} />)}
+      {items.map(item => (
+        <Item
+          handleAddToBasket={handleAddItemToBasket}
+          handleRemove={handleRemoveItem}
+          key={`${listKey}-${item.id}`}
+          item={item} />
+      ))}
     </ul>
   </div>
 );
