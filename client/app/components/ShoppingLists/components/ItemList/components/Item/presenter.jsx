@@ -22,16 +22,26 @@ class Item extends React.PureComponent {
 
   render() {
     const { item, isSelected } = this.props;
+
     let classes = styles.item;
     if (isSelected) classes = `${classes} ${styles.selected}`;
 
+    let recurBoxClasses = styles.recurBox;
+    if (item.recurring) recurBoxClasses = `${recurBoxClasses} ${styles.filled}`;
+
     return (
       <li className={classes} onClick={this.handleSelect.bind(this)}>
-        <span>{item.quantity}</span>
-        <span>{item.name}</span>
-        <span>
-          <button onClick={this.handleAddToBasket.bind(this)}>+ basket</button>
-          <button onClick={this.handleRemove.bind(this)}>x</button>
+        <span className={styles.recur}>
+          <span className={recurBoxClasses} />
+        </span>
+        <span className={styles.quantity}>
+          {item.quantity}
+        </span>
+        <span className={styles.name}>
+          {item.name}
+        </span>
+        <span className={styles.actions}>
+          <button onClick={this.handleAddToBasket.bind(this)} className={styles.add}>+</button>
         </span>
       </li>
     );

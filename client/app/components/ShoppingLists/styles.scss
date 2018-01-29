@@ -1,5 +1,12 @@
-$accent: #6946D2;
+$title: rgba(109, 115, 131, 1);
 
 .lists {
   min-height: 100vh;
+  padding: 30px 0 0 0;
+
+  h4 {
+    color: $title;
+    opacity: 0.8;
+    margin: 0 0 0 ;
+  }
 }

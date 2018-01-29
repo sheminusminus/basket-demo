@@ -1,6 +1,14 @@
+$border: rgba(222, 222, 227, 1);
+
 .itemList {
   ul {
-    list-style: none;
+    background-color: white;
+    border: 2px solid $border;
+    margin: 10px 0 0 0;
     padding: 0 0 0 0;
+
+    li:last-child {
+      border-bottom: 0;
+    }
   }
 }

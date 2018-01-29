@@ -1,8 +1,75 @@
+$border: rgba(212, 211, 216, 1);
+$recurFill: #6946D2;
+$addPath: '../../../../../../../assets/images/add.svg';
+$deletePath: '../../../../../../../assets/images/rm.svg';
+
+@mixin button($imagePath, $imgSize) {
+  width: 20px;
+  height: 20px;
+  color: transparent;
+  background-image: url($imagePath);
+  background-repeat: no-repeat;
+  background-size: $imgSize auto;
+  background-position: center;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  margin-left: 5px;
+
+  &:hover {
+    opacity: 1.0;
+  }
+}
+
 .item {
   width: 100%;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  border-bottom: 1px solid $border;
+  padding: 20px;
+  transition: all 0.2s;
+
+  .recur {
+    width: 15%;
+
+    .recurBox {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 1px solid $recurFill;
+      border-radius: 1px;
+      opacity: 0.5;
+
+      &.filled {
+        background-color: $recurFill;
+        opacity: 1.0;
+      }
+    }
+  }
+
+  .quantity {
+    width: 20%;
+  }
+
+  .name {
+    width: 50%;
+  }
+
+  .actions {
+    width: 15%;
+  }
+
+  .add {
+    @include button($addPath, 18px);
+  }
+
+  .delete {
+    @include button($deletePath, 14px);
+  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);

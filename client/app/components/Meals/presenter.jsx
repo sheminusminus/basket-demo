@@ -30,7 +30,7 @@ class Meals extends React.Component {
 
     return (
       <div className={styles.meals} id={anchor}>
-        Meals
+        <h4>Meals</h4>
         {Object.keys(meals).map(key => (
           <ItemGroup
             name={meals[key].name}

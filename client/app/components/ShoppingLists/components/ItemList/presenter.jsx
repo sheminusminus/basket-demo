@@ -6,7 +6,6 @@ import { Item } from './components';
 
 const ItemList = (props) => {
   const {
-    title,
     items,
     handleRemoveItem,
     handleAddItemToBasket,
@@ -17,7 +16,6 @@ const ItemList = (props) => {
 
   return (
     <div className={styles.itemList}>
-      <h4>{title}</h4>
       <ul>
         {items.map(item => (
           <Item
@@ -34,7 +32,6 @@ const ItemList = (props) => {
 };
 
 ItemList.defaultProps = {
-  title: '',
   items: [],
   handleRemoveItem: () => {},
   handleAddItemToBasket: () => {},

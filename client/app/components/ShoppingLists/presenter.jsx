@@ -4,6 +4,7 @@ import {
   getItemsHashMapFromSnapshotVals,
   getRecurringItemsFromMap,
   getNonRecurringItemsFromMap,
+  getAllItemsFromMap,
 } from '../../utils';
 
 import { ItemList, Actions } from './components';
@@ -67,15 +68,14 @@ class ShoppingLists extends React.Component {
     const { anchor, handleAddItemToBasket, handleRemoveItem } = this.props;
     const { items, selections } = this.state;
 
-    const recurringItems = getRecurringItemsFromMap(items);
-    const onceItems = getNonRecurringItemsFromMap(items);
+    const listItems = getAllItemsFromMap(items);
 
     return (
       <div className={styles.lists} id={anchor}>
         <div>
-          Shopping List
+          <h4>Shopping List</h4>
           {
-            selections.length > 1 &&
+            selections.length > 0 &&
             <Actions
               handleMealName={this.handleMealName.bind(this)}
               handleSaveMeal={this.handleSaveAsMeal.bind(this)}/>
@@ -86,17 +86,8 @@ class ShoppingLists extends React.Component {
           handleSelectItem={this.handleSelectItem.bind(this)}
           handleAddItemToBasket={handleAddItemToBasket}
           handleRemoveItem={handleRemoveItem}
-          title="Every Week"
           listKey="recurring"
-          items={recurringItems} />
-        <ItemList
-          selectedItems={selections}
-          handleSelectItem={this.handleSelectItem.bind(this)}
-          handleAddItemToBasket={handleAddItemToBasket}
-          handleRemoveItem={handleRemoveItem}
-          title="Only This Week"
-          listKey="recurring"
-          items={onceItems} />
+          items={listItems} />
       </div>
     );
   }

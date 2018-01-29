@@ -16,10 +16,10 @@ class BasketItem extends React.PureComponent {
         <span>{item.quantity}</span>
         <span>{item.name}</span>
         <span>
-      <button onClick={this.handleRemoveItem.bind(this)}>
-        x
-      </button>
-    </span>
+          <button onClick={this.handleRemoveItem.bind(this)} className={styles.remove}>
+            x
+          </button>
+        </span>
       </li>
     );
   }
