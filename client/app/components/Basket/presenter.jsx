@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { getBasketHashMapFromSnapshotVals } from '../../utils';
+import {
+  getAllItemsFromMap,
+  getHashMapFromSnapshotValsForIds,
+} from '../../utils';
 
 import { ItemBasket } from './components';
 
@@ -24,18 +27,21 @@ class Basket extends React.Component {
 
     const keys = Object.keys(values);
     getItemsOnce((itemValues) => {
-      const basketItems = getBasketHashMapFromSnapshotVals(keys, itemValues);
+      const basketItems = getHashMapFromSnapshotValsForIds(keys, itemValues);
       this.setState({ basketItems }, () => console.log(this.state.basketItems));
     });
   }
 
   render() {
     const { anchor } = this.props;
+    const { basketItems } = this.state;
+
+    const items = getAllItemsFromMap(basketItems);
 
     return (
       <div className={styles.basket} id={anchor}>
         Basket
-        <ItemBasket />
+        <ItemBasket items={items} />
       </div>
     );
   }

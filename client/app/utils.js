@@ -30,16 +30,43 @@ export const getNonRecurringItemsFromMap = (hm) => {
   }));
 };
 
-export const getBasketHashMapFromSnapshotVals = (basketItemIds, values) => {
-  if (!values || !basketItemIds) return {};
+export const getAllItemsFromMap = (hm) => {
+  const keys = Object.keys(hm);
+  return keys.map(key => ({
+    ...hm[key],
+  }));
+};
 
-  return basketItemIds.reduce((hashMap, key) => ({
+export const getHashMapFromSnapshotValsForIds = (itemIds, values) => {
+  if (!values || !itemIds) return {};
+
+  return itemIds.reduce((hashMap, key) => ({
     ...hashMap,
     [key]: {
       id: key,
       name: values[key].name,
       quantity: values[key].quantity,
       recurring: values[key].recurring,
+    },
+  }), {});
+};
+
+export const getMealsWithItemsHashMapFromSnapshotVals = (mealValues, itemValues) => {
+  if (!mealValues || !itemValues) return {};
+
+  const mealKeys = Object.keys(mealValues);
+
+  return mealKeys.reduce((hashMap, key) => ({
+    ...hashMap,
+    [key]: {
+      id: key,
+      name: mealValues[key].name,
+      items: getAllItemsFromMap(
+        getHashMapFromSnapshotValsForIds(
+          Object.keys(mealValues[key].items),
+          itemValues,
+        ),
+      ),
     },
   }), {});
 };
