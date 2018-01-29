@@ -41,7 +41,7 @@ class Basket extends React.Component {
 
     return (
       <div className={styles.basket} id={anchor}>
-        <h4>Basket</h4>
+        <h4>In the Basket</h4>
         <ul>
           {items.map(item => (
             <BasketItem
