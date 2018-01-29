@@ -2,9 +2,27 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-export default ({ item }) => (
-  <li className={styles.item}>
-    <span>{item.quantity}</span>
-    <span>{item.name}</span>
-  </li>
-);
+class BasketItem extends React.PureComponent {
+  handleRemoveItem() {
+    const { item, handleRemoveItem } = this.props;
+    handleRemoveItem(item.id);
+  }
+
+  render() {
+    const { item } = this.props;
+
+    return (
+      <li className={styles.item}>
+        <span>{item.quantity}</span>
+        <span>{item.name}</span>
+        <span>
+      <button onClick={this.handleRemoveItem.bind(this)}>
+        x
+      </button>
+    </span>
+      </li>
+    );
+  }
+}
+
+export default BasketItem;

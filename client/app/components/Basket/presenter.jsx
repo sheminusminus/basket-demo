@@ -16,6 +16,7 @@ class Basket extends React.Component {
       basketItems: {},
     };
   }
+
   componentDidMount() {
     const { listenToBasket } = this.props;
     listenToBasket(this.handleValues.bind(this));
@@ -33,7 +34,7 @@ class Basket extends React.Component {
   }
 
   render() {
-    const { anchor } = this.props;
+    const { anchor, handleRemoveItemFromBasket } = this.props;
     const { basketItems } = this.state;
 
     const items = getAllItemsFromMap(basketItems);
@@ -42,7 +43,12 @@ class Basket extends React.Component {
       <div className={styles.basket} id={anchor}>
         Basket
         <ul>
-          {items.map(item => <BasketItem key={`basket-${item.id}`} item={item} />)}
+          {items.map(item => (
+            <BasketItem
+              handleRemoveItem={handleRemoveItemFromBasket}
+              key={`basket-${item.id}`}
+              item={item} />
+          ))}
         </ul>
       </div>
     );

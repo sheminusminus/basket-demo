@@ -15,18 +15,18 @@ export default function withFirebaseDb(Component, db) {
     }
 
     static handleRemoveItem(itemId) {
-      db.ref(`items/${itemId}`).set(null);
-      db.ref(`list/${itemId}`).set(null);
+      db.ref('items').update({ [itemId]: null });
+      db.ref('list').update({ [itemId]: null });
     }
 
     static handleAddItemToBasket(itemId) {
       db.ref('basket').update({ [itemId]: true });
-      db.ref(`list/${itemId}`).update(null);
+      db.ref('list').update({ [itemId]: null });
     }
 
     static handleRemoveItemFromBasket(itemId) {
       db.ref('basket').update({ [itemId]: null });
-      db.ref(`list/${itemId}`).update(true);
+      db.ref('list').update({ [itemId]: true });
     }
 
     static handleAddItemToList(itemId) {
