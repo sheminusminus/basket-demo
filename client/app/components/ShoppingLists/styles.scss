@@ -3,11 +3,12 @@ $legendFill: #6946D2;
 
 .lists {
   min-height: 100vh;
-  padding: 60px 0 0 0;
+  padding: 95px 0 0 0;
 
   .listsHeader {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   h4 {

@@ -17,8 +17,16 @@ class Nav extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeHash: '',
+      activeHash: NavLinks.HOME,
     };
+  }
+
+  componentDidMount() {
+    if (global.window && window.location.hash.length) {
+      this.setState({
+        activeHash: window.location.hash,
+      });
+    }
   }
 
   render() {
@@ -35,11 +43,11 @@ class Nav extends React.PureComponent {
             onMouseUp={() => this.setState({ activeHash: NavLinks.HOME })} />
           <NavLink
             text="Basket"
-            href={NavLinks.BASKET}
-            isActive={activeHash.includes(NavLinks.BASKET)}
-            onMouseUp={() => this.setState({ activeHash: NavLinks.BASKET })} />
+            href={NavLinks.HOME}
+            isActive={activeHash.includes(NavLinks.HOME)}
+            onMouseUp={() => this.setState({ activeHash: NavLinks.HOME })} />
           <NavLink
-            text="Lists"
+            text="List"
             href={NavLinks.LISTS}
             isActive={activeHash.includes(NavLinks.LISTS)}
             onMouseUp={() => this.setState({ activeHash: NavLinks.LISTS })} />

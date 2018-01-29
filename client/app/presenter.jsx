@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
+import moment from 'moment';
 
 import { db } from './db';
 
@@ -18,26 +19,40 @@ class App extends React.Component {
     super(props);
     this.state = {
       showItemAdd: false,
+      showSchedule: false,
+      date: '',
     };
+    this.toggleSchedule = this.toggleSchedule.bind(this);
     this.toggleItemEntry = this.toggleItemEntry.bind(this);
-    this.handleAddItem = this.handleAddItem.bind(this);
+  }
+
+  componentDidMount() {
+    db.ref('schedule').on('value', (snapshot) => {
+      const { day } = snapshot.val();
+      const date = moment().day(day);
+      this.setState({
+        date: date.format('MMM DD, YYYY'),
+      });
+    });
+  }
+
+  toggleSchedule() {
+    this.setState({ showSchedule: !this.state.showSchedule });
   }
 
   toggleItemEntry() {
     this.setState({ showItemAdd: !this.state.showItemAdd });
   }
 
-  handleAddItem(evt) {
-    evt.stopPropagation();
-    console.log(this.props);
-  }
-
   render() {
-    const { showItemAdd } = this.state;
+    const { showItemAdd, date } = this.state;
 
     return (
-      <Layout toggleItemEntry={this.toggleItemEntry}>
-        <BasketWithDb anchor={NavLinks.BASKET} />
+      <Layout
+        date={date}
+        toggleSchedule={this.toggleSchedule}
+        toggleItemEntry={this.toggleItemEntry}>
+        <BasketWithDb anchor="" />
         <ShoppingListsWithDb anchor={NavLinks.LISTS} />
         <MealsWithDb anchor={NavLinks.MEALS} />
         {
