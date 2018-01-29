@@ -66,11 +66,14 @@ class Basket extends React.Component {
       <div className={styles.basket} id={anchor}>
         <div className={styles.header}>
           <h4>In the Basket</h4>
-          <button
-            className={styles.clear}
-            onClick={this.handleBasketPurchased.bind(this)}>
-            Mark All Purchased
-          </button>
+          {
+            items.length > 0 &&
+            <button
+              className={styles.clear}
+              onClick={this.handleBasketPurchased.bind(this)}>
+              Mark All Purchased
+            </button>
+          }
         </div>
         {contents}
       </div>

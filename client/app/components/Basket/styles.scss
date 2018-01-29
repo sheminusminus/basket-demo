@@ -22,8 +22,10 @@ $accent: #EE6462;
       border: 0;
       outline: none;
       color: $accent;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
+      padding-top: 2px;
+      text-align: right;
 
       &:hover {
         text-decoration: underline;
