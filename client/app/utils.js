@@ -31,22 +31,6 @@ export const getItemsHashMapFromSnapshotFilteringIds = (filterIds, values) => {
   }), {});
 };
 
-export const getRecurringItemsFromMap = (hm) => {
-  const keys = Object.keys(hm);
-  const filtered = keys.filter(key => hm[key].recurring);
-  return filtered.map(key => ({
-    ...hm[key],
-  }));
-};
-
-export const getNonRecurringItemsFromMap = (hm) => {
-  const keys = Object.keys(hm);
-  const filtered = keys.filter(key => !hm[key].recurring);
-  return filtered.map(key => ({
-    ...hm[key],
-  }));
-};
-
 export const getAllItemsFromMap = (hm) => {
   const keys = Object.keys(hm);
   return keys.map(key => ({
