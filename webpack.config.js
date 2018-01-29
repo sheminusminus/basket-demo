@@ -6,6 +6,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const SRC_FOLDER = path.join(__dirname, 'client');
 const DIST_FOLDER = path.join(__dirname, 'public');
@@ -74,6 +75,13 @@ module.exports = {
       filename: 'index.html',
       template: 'client/assets/html/index.html',
     }),
+    new CopyWebpackPlugin([
+      {
+        context: path.resolve(SRC_FOLDER, 'assets/images'),
+        from: 'basket_icon.png',
+        to: path.resolve(DIST_FOLDER),
+      },
+    ]),
   ],
   devtool: 'source-map',
 };
