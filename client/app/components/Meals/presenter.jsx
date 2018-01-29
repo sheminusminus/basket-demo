@@ -25,7 +25,7 @@ class Meals extends React.Component {
   }
 
   render() {
-    const { anchor } = this.props;
+    const { anchor, editItemQuantity, editItemName } = this.props;
     const { meals } = this.state;
 
     return (
@@ -33,6 +33,8 @@ class Meals extends React.Component {
         <h4>Meals</h4>
         {Object.keys(meals).map(key => (
           <ItemGroup
+            handleQuantity={editItemQuantity}
+            handleName={editItemName}
             name={meals[key].name}
             items={meals[key].items}
             groupKey={key}

@@ -28,7 +28,13 @@ class Basket extends React.Component {
   }
 
   render() {
-    const { anchor, handleRemoveItemFromBasket } = this.props;
+    const {
+      anchor,
+      handleRemoveItemFromBasket,
+      editItemQuantity,
+      editItemName,
+    } = this.props;
+
     const { basketItems } = this.state;
 
     const items = getAllItemsFromMap(basketItems);
@@ -39,6 +45,8 @@ class Basket extends React.Component {
         <ul>
           {items.map(item => (
             <BasketItem
+              handleQuantity={editItemQuantity}
+              handleName={editItemName}
               handleRemoveItem={handleRemoveItemFromBasket}
               key={`basket-${item.id}`}
               item={item} />

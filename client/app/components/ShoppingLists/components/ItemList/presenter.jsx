@@ -12,6 +12,8 @@ const ItemList = (props) => {
     handleSelectItem,
     listKey,
     selectedItems,
+    handleItemName,
+    handleItemQuantity,
   } = props;
 
   return (
@@ -19,6 +21,8 @@ const ItemList = (props) => {
       <ul>
         {items.map(item => (
           <Item
+            handleName={handleItemName}
+            handleQuantity={handleItemQuantity}
             isSelected={selectedItems.includes(item.id)}
             handleSelect={handleSelectItem}
             handleAddToBasket={handleAddItemToBasket}

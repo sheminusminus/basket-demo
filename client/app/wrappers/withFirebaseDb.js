@@ -14,6 +14,30 @@ export default function withFirebaseDb(Component, db) {
       });
     }
 
+    static editItemName(itemId, name, mealId) {
+      if (mealId) {
+        db.ref(`meals/${mealId}/items/${itemId}`).update({
+          name,
+        });
+      } else {
+        db.ref(`items/${itemId}`).update({
+          name,
+        });
+      }
+    }
+
+    static editItemQuantity(itemId, quantity = 1, mealId) {
+      if (mealId) {
+        db.ref(`meals/${mealId}/items/${itemId}`).update({
+          quantity,
+        });
+      } else {
+        db.ref(`items/${itemId}`).update({
+          quantity,
+        });
+      }
+    }
+
     static handleRemoveItem(itemId) {
       db.ref('items').update({ [itemId]: null });
     }
@@ -81,6 +105,8 @@ export default function withFirebaseDb(Component, db) {
       return (
         <Component
           db={db}
+          editItemQuantity={ComponentWithDb.editItemQuantity}
+          editItemName={ComponentWithDb.editItemName}
           saveMeal={ComponentWithDb.saveMeal}
           listenToItems={ComponentWithDb.listenToItems}
           listenToBasket={ComponentWithDb.listenToBasket}

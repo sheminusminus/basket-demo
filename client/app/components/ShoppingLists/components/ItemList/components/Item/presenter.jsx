@@ -20,6 +20,22 @@ class Item extends React.PureComponent {
     handleSelect(item.id);
   }
 
+  handleName(evt) {
+    const { item, handleName } = this.props;
+    handleName(item.id, evt.target.value);
+  }
+
+  handleQuantity(evt) {
+    const { item, handleQuantity } = this.props;
+    handleQuantity(item.id, evt.target.value);
+  }
+
+  /* eslint-disable class-methods-use-this */
+  handleInputFocus(evt) {
+    evt.stopPropagation();
+  }
+  /* eslint-enable class-methods-use-this */
+
   render() {
     const { item, isSelected } = this.props;
 
@@ -34,12 +50,18 @@ class Item extends React.PureComponent {
         <span className={styles.recur}>
           <span className={recurBoxClasses} />
         </span>
-        <span className={styles.quantity}>
-          {item.quantity}
-        </span>
-        <span className={styles.name}>
-          {item.name}
-        </span>
+        <input
+          onChange={this.handleQuantity.bind(this)}
+          onClick={this.handleInputFocus}
+          value={item.quantity}
+          type="number"
+          className={styles.quantity} />
+        <input
+          onChange={this.handleName.bind(this)}
+          onClick={this.handleInputFocus}
+          value={item.name}
+          type="text"
+          className={styles.name} />
         <span className={styles.actions}>
           <button onClick={this.handleAddToBasket.bind(this)} className={styles.add}>+</button>
         </span>

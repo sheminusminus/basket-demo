@@ -65,7 +65,14 @@ class ShoppingLists extends React.Component {
   }
 
   render() {
-    const { anchor, handleAddItemToBasket, handleRemoveItem } = this.props;
+    const {
+      anchor,
+      handleAddItemToBasket,
+      handleRemoveItem,
+      editItemName,
+      editItemQuantity,
+    } = this.props;
+
     const { items, selections } = this.state;
 
     const listItems = getAllItemsFromMap(items);
@@ -82,6 +89,8 @@ class ShoppingLists extends React.Component {
           }
         </div>
         <ItemList
+          handleItemName={editItemName}
+          handleItemQuantity={editItemQuantity}
           selectedItems={selections}
           handleSelectItem={this.handleSelectItem.bind(this)}
           handleAddItemToBasket={handleAddItemToBasket}
