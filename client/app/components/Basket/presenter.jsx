@@ -9,6 +9,10 @@ import { BasketItem } from './components';
 
 import styles from './styles.scss';
 
+const NoItems = () => (
+  <div className={styles.empty}>Add some items to your basket to see them here!</div>
+);
+
 class Basket extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +31,12 @@ class Basket extends React.Component {
     this.setState({ basketItems }, () => console.log(this.state.basketItems));
   }
 
+  handleBasketPurchased() {
+    const { handleBasketPurchased } = this.props;
+    const { basketItems } = this.state;
+    handleBasketPurchased(basketItems);
+  }
+
   render() {
     const {
       anchor,
@@ -39,22 +49,30 @@ class Basket extends React.Component {
 
     const items = getAllItemsFromMap(basketItems);
 
+    const contents = items.length ? (
+      <ul>
+        {items.map(item => (
+          <BasketItem
+            handleQuantity={editItemQuantity}
+            handleName={editItemName}
+            handleRemoveItem={handleRemoveItemFromBasket}
+            key={`basket-${item.id}`}
+            item={item} />
+        ))}
+      </ul>
+    ) : <NoItems />;
+
     return (
       <div className={styles.basket} id={anchor}>
         <div className={styles.header}>
           <h4>In the Basket</h4>
-          <button className={styles.clear}>Mark All Purchased</button>
+          <button
+            className={styles.clear}
+            onClick={this.handleBasketPurchased.bind(this)}>
+            Mark All Purchased
+          </button>
         </div>
-        <ul>
-          {items.map(item => (
-            <BasketItem
-              handleQuantity={editItemQuantity}
-              handleName={editItemName}
-              handleRemoveItem={handleRemoveItemFromBasket}
-              key={`basket-${item.id}`}
-              item={item} />
-          ))}
-        </ul>
+        {contents}
       </div>
     );
   }

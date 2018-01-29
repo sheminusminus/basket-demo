@@ -1,4 +1,5 @@
 $title: rgba(109, 115, 131, 1);
+$border: rgba(222, 222, 227, 1);
 $legendFill: #6946D2;
 
 .lists {
@@ -32,5 +33,14 @@ $legendFill: #6946D2;
       margin-left: 10px;
       font-size: 14px;
     }
+  }
+
+  .empty {
+    background-color: white;
+    border: 2px solid $border;
+    color: $title;
+    padding: 30px;
+    margin: 10px 0 0 0;
+    text-align: center;
   }
 }

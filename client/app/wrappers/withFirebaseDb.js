@@ -26,6 +26,17 @@ export default function withFirebaseDb(Component, db) {
       }
     }
 
+    static handleBasketPurchased(items) {
+      const keys = Object.keys(items);
+      keys.forEach((key) => {
+        if (!items[key].recurring) {
+          db.ref('items').update({ [key]: null });
+        } else {
+          db.ref(`items/${key}`).update({ inBasket: false });
+        }
+      });
+    }
+
     static editItemQuantity(itemId, quantity = 1, mealId) {
       if (mealId) {
         db.ref(`meals/${mealId}/items/${itemId}`).update({
@@ -111,6 +122,7 @@ export default function withFirebaseDb(Component, db) {
       return (
         <Component
           db={db}
+          handleBasketPurchased={ComponentWithDb.handleBasketPurchased}
           editItemQuantity={ComponentWithDb.editItemQuantity}
           editItemName={ComponentWithDb.editItemName}
           editItemRecurring={ComponentWithDb.editItemRecurring}

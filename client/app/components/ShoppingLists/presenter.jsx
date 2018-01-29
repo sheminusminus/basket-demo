@@ -2,14 +2,16 @@ import React from 'react';
 
 import {
   getItemsHashMapFromSnapshotVals,
-  getRecurringItemsFromMap,
-  getNonRecurringItemsFromMap,
   getAllItemsFromMap,
 } from '../../utils';
 
 import { ItemList, Actions } from './components';
 
 import styles from './styles.scss';
+
+const NoItems = () => (
+  <div className={styles.empty}>Add some items to your shopping list to see them here!</div>
+);
 
 class ShoppingLists extends React.Component {
   constructor(props) {
@@ -78,6 +80,19 @@ class ShoppingLists extends React.Component {
 
     const listItems = getAllItemsFromMap(items);
 
+    const contents = listItems.length ? (
+      <ItemList
+        handleItemRecurring={editItemRecurring}
+        handleItemName={editItemName}
+        handleItemQuantity={editItemQuantity}
+        selectedItems={selections}
+        handleSelectItem={this.handleSelectItem.bind(this)}
+        handleAddItemToBasket={handleAddItemToBasket}
+        handleRemoveItem={handleRemoveItem}
+        listKey="recurring"
+        items={listItems} />
+    ) : <NoItems />;
+
     return (
       <div className={styles.lists} id={anchor}>
         <div>
@@ -95,16 +110,7 @@ class ShoppingLists extends React.Component {
               handleSaveMeal={this.handleSaveAsMeal.bind(this)}/>
           }
         </div>
-        <ItemList
-          handleItemRecurring={editItemRecurring}
-          handleItemName={editItemName}
-          handleItemQuantity={editItemQuantity}
-          selectedItems={selections}
-          handleSelectItem={this.handleSelectItem.bind(this)}
-          handleAddItemToBasket={handleAddItemToBasket}
-          handleRemoveItem={handleRemoveItem}
-          listKey="recurring"
-          items={listItems} />
+        {contents}
       </div>
     );
   }
