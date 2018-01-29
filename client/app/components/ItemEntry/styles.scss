@@ -43,6 +43,7 @@ $cancel: #D3334D;
   background: $underlayBg;
   cursor: pointer;
   animation: fadeIn $animTiming;
+  z-index: 100;
 }
 
 .contentWrapper {
@@ -52,6 +53,7 @@ $cancel: #D3334D;
   justify-content: center;
   pointer-events: none;
   overflow: hidden;
+  z-index: 101;
 
   .content {
     animation: open $animTiming;
