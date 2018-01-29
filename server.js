@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
   redirect: false,
 }));
 
-// serve the index.html over all unmatched Routes.js
+// serve the index.html over all routes
 app.get('*', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, 'public/index.html'));
 });
