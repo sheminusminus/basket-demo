@@ -15,8 +15,15 @@ $border: rgba(222, 222, 227, 1);
     background-color: white;
     border: 2px solid $border;
     color: $title;
-    padding: 30px;
+    padding: 40px 30px;
     margin: 10px 0 0 0;
     text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .mealsWrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
 }

@@ -9,6 +9,8 @@ import { NavLinks } from './constants';
 import { Basket, Meals, ShoppingLists, Layout, ItemEntry } from './components';
 import { withFirebaseDb } from './wrappers';
 
+// create wrapped components with database function access so we
+// don't have to repeat the same code for any of these
 const BasketWithDb = withFirebaseDb(Basket, db);
 const MealsWithDb = withFirebaseDb(Meals, db);
 const ShoppingListsWithDb = withFirebaseDb(ShoppingLists, db);

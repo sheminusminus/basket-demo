@@ -6,7 +6,8 @@ const Header = ({ toggleItemEntry, toggleSchedule, date = 'This Week' }) => (
   <div className={styles.headerWrapper} id="basket">
     <header className={styles.header}>
       <div className={styles.scheduleWrapper}>
-        <button className={styles.schedule} onClick={toggleSchedule}>{date}</button>
+        <span className={styles.date}>{date}</span>
+        <button className={styles.schedule} onClick={toggleSchedule} />
       </div>
       <div className={styles.buttonWrapper}>
         <button className={styles.add} onClick={toggleItemEntry}>+</button>

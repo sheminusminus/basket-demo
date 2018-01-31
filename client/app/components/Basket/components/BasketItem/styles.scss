@@ -30,7 +30,7 @@ $text: rgba(109, 115, 131, 1);
     background-image: url($removePath);
     background-repeat: no-repeat;
     background-size: 14px 14px;
-    background-position: center;
+    background-position: center center;
     border: 0;
     outline: none;
     background-color: transparent;
@@ -41,5 +41,9 @@ $text: rgba(109, 115, 131, 1);
     &:hover {
       opacity: 1.0;
     }
+  }
+
+  &:last-child {
+    border-bottom: 0;
   }
 }

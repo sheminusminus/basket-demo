@@ -6,9 +6,45 @@ $border: rgba(222, 222, 227, 1);
     border: 2px solid $border;
     margin: 10px 0 0 0;
     padding: 0 0 0 0;
+  }
+}
 
-    li:last-child {
-      border-bottom: 0;
+@media (min-width: 768px) {
+  .itemList {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: transparent;
+      border: 0;
+
+      li {
+        background-color: white;
+        margin: 0 10px 10px 0;
+        width: calc(50% - 5px);
+
+        &:nth-child(2n + 2) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1080px) {
+  .itemList {
+    ul {
+
+      li {
+        width: calc((100% / 3) - 10px);
+
+        &:nth-child(2n + 2) {
+          margin-right: 10px;
+        }
+
+        &:nth-child(3n + 3) {
+          margin-right: 0;
+        }
+      }
     }
   }
 }

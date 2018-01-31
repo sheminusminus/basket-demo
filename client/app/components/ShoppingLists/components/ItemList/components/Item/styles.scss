@@ -4,6 +4,7 @@ $text: rgba(109, 115, 131, 1);
 $addPath: '../../../../../../../assets/images/add.svg';
 $deletePath: '../../../../../../../assets/images/rm.svg';
 $recurShadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+$hoverShadow: rgba(0, 0, 0, 0.1) 0px 1px 6px, rgba(0, 0, 0, 0.08) 0px 8px 9px;
 
 @mixin button($imagePath, $imgSize) {
   width: 20px;
@@ -31,12 +32,12 @@ $recurShadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  border-bottom: 1px solid $border;
   padding: 20px;
   transition: all 0.2s;
+  border-bottom: 1px solid $border;
 
   .recur {
-    width: 15%;
+    width: 10%;
 
     .recurBox {
       display: inline-block;
@@ -72,11 +73,11 @@ $recurShadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
 
   .quantity {
-    width: 15%;
+    width: 20%;
   }
 
   .name {
-    width: 60%;
+    width: 55%;
   }
 
   .actions {
@@ -92,11 +93,30 @@ $recurShadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     @include button($deletePath, 14px);
   }
 
+  &:last-child {
+    border-width: 1px 1px 0 1px;
+  }
+
   &:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+    box-shadow: $hoverShadow;
   }
 
   &.selected {
-    background-color: rgba(0, 0, 0, 0.2);
+    border-left: 3px solid $recurFill;
+    box-shadow: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .item {
+    border: 2px solid $border;
+
+    &:last-child {
+      border-width: 2px 2px 2px 2px;
+    }
+
+    &.selected {
+      border: 2px solid $recurFill;
+    }
   }
 }

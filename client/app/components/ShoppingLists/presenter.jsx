@@ -29,23 +29,21 @@ class ShoppingLists extends React.Component {
   }
 
   handleSaveAsMeal() {
-    const { getItemsOnce, saveMeal } = this.props;
+    const { saveMeal } = this.props;
     const { selections, mealName } = this.state;
 
     if (!mealName || !selections.length) return;
 
+    const items = selections.reduce((hashMap, key) => ({
+      ...hashMap,
+      [key]: this.state.items[key],
+    }), {});
+
+    saveMeal(mealName, items);
+
     this.setState({
       selections: [],
       mealName: '',
-    }, () => {
-      getItemsOnce((itemValues) => {
-        const items = selections.reduce((hashMap, key) => ({
-          ...hashMap,
-          [key]: itemValues[key],
-        }), {});
-
-        saveMeal(mealName, items);
-      });
     });
   }
 
@@ -102,7 +100,7 @@ class ShoppingLists extends React.Component {
             <h4>Shopping List</h4>
             <span className={styles.legend}>
               <span className={styles.box} />
-              <span className={styles.text}>Recurring</span>
+              <span className={styles.text}>Toggle Weekly</span>
             </span>
           </div>
           {

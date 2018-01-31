@@ -119,11 +119,26 @@ export default function withFirebaseDb(Component, db) {
       });
     }
 
+    static addMealItemsToList(mealId) {
+      db.ref(`meals/${mealId}`).once('value', (snapshot) => {
+        const { items } = snapshot.val();
+        const keys = Object.keys(items);
+
+        keys.forEach((key) => {
+          db.ref(`items/${key}`).set({
+            ...items[key],
+            inBasket: false,
+          });
+        });
+      });
+    }
+
     render() {
       const { ...props } = this.props;
       return (
         <Component
           db={db}
+          addMealItemsToList={ComponentWithDb.addMealItemsToList}
           handleBasketPurchased={ComponentWithDb.handleBasketPurchased}
           editItemQuantity={ComponentWithDb.editItemQuantity}
           editItemName={ComponentWithDb.editItemName}

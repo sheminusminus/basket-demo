@@ -71,7 +71,7 @@ class Basket extends React.Component {
             <button
               className={styles.clear}
               onClick={this.handleBasketPurchased.bind(this)}>
-              Mark All Purchased
+              Empty Basket
             </button>
           }
         </div>

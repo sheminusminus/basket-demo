@@ -1,7 +1,8 @@
 $bodyBg: rgba(232, 232, 237, 1);
+$bodySize: calc(100% - 80px);
 
 .body {
-  width: calc(100% - 80px);
+  width: $bodySize;
   background: $bodyBg;
 
   .content {

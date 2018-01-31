@@ -1,4 +1,4 @@
-$value: #6946D2;
+$accent: #6946D2;
 $inputBorder: #DBDBDB;
 $text: rgba(109, 115, 131, 1);
 $buttonWidth: 80px;
@@ -17,15 +17,17 @@ $itemHeight: 30px;
   margin: 0 10px 10px 0;
 
   &:focus {
-    border-bottom: 1px solid $value;
+    border-bottom: 1px solid $accent;
   }
 }
 
 .save {
   height: $itemHeight;
   background-color: transparent;
-  color: $text;
+  color: $accent;
   outline: none;
   border: 0;
-  width: $buttonWidth;
+  cursor: pointer;
+  text-decoration: underline;
+  vertical-align: middle;
 }

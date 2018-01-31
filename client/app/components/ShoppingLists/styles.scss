@@ -16,6 +16,7 @@ $legendFill: #6946D2;
     color: $title;
     opacity: 0.8;
     margin: 0 0 0 ;
+    padding-top: 2px;
   }
 
   .legend {
@@ -39,7 +40,7 @@ $legendFill: #6946D2;
     background-color: white;
     border: 2px solid $border;
     color: $title;
-    padding: 30px;
+    padding: 40px 30px;
     margin: 10px 0 0 0;
     text-align: center;
   }
